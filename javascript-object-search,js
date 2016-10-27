@@ -1,0 +1,24 @@
+    function find_property(object, property) {
+        var results = [];
+        for (var key in object) {
+            if (object !== undefined) {
+                var value = object[key];
+
+                if (key === property) {
+                    results.push({
+                        "property": key,
+                        "value": value
+                    });
+                }
+
+                if (typeof value === 'object') {
+                    var inner_result = find_property(value, property);
+
+                    if (inner_result.length > 0 && inner_result !== undefined) {
+                        results.push(inner_result[0]);
+                    }
+                }
+            }
+        }
+        return results;
+    }
